@@ -41,7 +41,7 @@ console.log("connected")
         fetch(`https://www.thecolorapi.com/scheme?hex=${color}`)
         .then(resp => resp.json())
         .then(obj => {
-            // console.log(obj)
+            console.log(obj)
 
 
             for (element of obj.colors){
@@ -56,9 +56,9 @@ console.log("connected")
                 <div id="comp1" class="card-body" style="background-color: ${element.hex.value}" >
                   </div>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item" id="acmyk">test</li>
-                  <li class="list-group-item" id="argb"></li>
-                  <li class="list-group-item" id="ahex"></li>
+                <li class="list-group-item" id="compcmyk">CMYK ${(element.cmyk.value).slice(4)} </li>
+                  <li class="list-group-item" id="comprgb">RGB ${(element.rgb.value).slice(3)}</li>
+                    <li class="list-group-item" id="comphex">HEX ${(element.hex.value)}</li>
                 </ul>
               </div>
                 
@@ -66,20 +66,8 @@ console.log("connected")
                 `
 
 
-            // const newDiv = innerHTML = `
-            //     <div class="card mt-5 text-center" style="width: 18rem; height: 18rem;" >
-            //     <div id="comp1" class="card-body" >
-            //       </div>
-            //     <ul class="list-group list-group-flush">
-            //       <li class="list-group-item" id="cmyk">test</li>
-            //       <li class="list-group-item" id="rgb"></li>
-            //       <li class="list-group-item" id="hex"></li>
-            //     </ul>
-            //   </div>
-                
-                
-            //     `
             
+    
                 compColors.appendChild(newDiv)
                 newDiv.replaceWith(...newDiv.childNodes)
                 
