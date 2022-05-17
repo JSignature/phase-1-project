@@ -36,18 +36,18 @@ window.addEventListener('DOMContentLoaded', e => {
 
     //Run the buildcard function to display each group of cards in the accordian
     async function buildAccordian() {
-      console.log('From the Async function')
+      //console.log('From the Async function')
       await buildCards('quad', quadColors)
       //console.log('Quad is built')
       await buildCards('analogic-complement', analogicColors)
       //console.log('Analogic is built')
       await buildCards('monochrome', monochromeColors)
       //console.log('Monochrome is built')
-      console.log('Log after the await functions are started')
+      //console.log('Log after the await functions are started')
       //This needs to show all the buttons
-      console.log(document.querySelectorAll('.copyBtn'))
+      //console.log(document.querySelectorAll('.copyBtn'))
       copyBtnEventListner()
-      console.log('Added event listeners')
+      //console.log('Added event listeners')
     }
 
     buildAccordian()
@@ -56,11 +56,11 @@ window.addEventListener('DOMContentLoaded', e => {
   })
 
   //   Build card function for the accordian
-  const buildCards = (mode, div) => {
+  const buildCards = async (mode, div) => {
     const color = colorPicker.value.slice(1)
     div.innerHTML = ' '
 
-    fetch(`https://www.thecolorapi.com/scheme?hex=${color}&mode=${mode}`)
+    await fetch(`https://www.thecolorapi.com/scheme?hex=${color}&mode=${mode}`)
       .then(resp => resp.json())
       .then(obj => {
         // console.log(obj)
@@ -84,20 +84,18 @@ window.addEventListener('DOMContentLoaded', e => {
           <ul class="list-group list-group-flush">
 
           <! –– Make the three lines with color details and copy button ––>
-          <li class="list-group-item " ><span>CMYK ${element.cmyk.value.slice(
+         
+          <li class="list-group-item " ><span style="font-size:.75rem"><label class="p-2" for="cmyk">CMYK </label><input style="width: 120px" type="text" name="cmyk" value="${element.cmyk.value.slice(
             4
-          )} <button type="submit" class="copyBtn">Copy</button></span></li>
-          <li class="list-group-item " ><span style="font-size: .75rem"><label for="cmyk">CMYK</label><input style="width: 120px" type="text" name="cmyk" value="${element.cmyk.value.slice(
-            4
-          )}"> <button type="submit" class="copyBtn">Copy</button></span></li>
+          )}"> <i class="bi bi-clipboard copyBtn" style="font-size: 1rem"></i></span></li>
           
           
-          <li class="list-group-item " ><span>RGB ${element.rgb.value.slice(
+          <li class="list-group-item " ><span style="font-size:.75rem"><label class="p-2" for="rgb">RGB </label><input style="width: 120px" type="text" name="rgb" value="${element.rgb.value.slice(
             3
-          )} <button type="submit" class="copyBtn">Copy</button></span></li>
-              <li class="list-group-item" ><span>HEX ${
+          )}"> <i class="bi bi-clipboard copyBtn" style="font-size: 1rem"></i></span></li>
+              <li class="list-group-item" ><span style="font-size:.75rem"><label class="p-2" for="hex">HEX </label><input style="width: 120px" type="text" name="hex" value="${
                 element.hex.value
-              } <button type="submit" class="copyBtn">Copy</button></span></li>
+              }"> <i class="bi bi-clipboard copyBtn" style="font-size: 1rem"></i></span></li>
           </ul>
         </div>
           `
@@ -115,13 +113,18 @@ window.addEventListener('DOMContentLoaded', e => {
 
   //Copy buttons event listener function
   const copyBtnEventListner = () => {
-    console.log('From the copy button event listener in the Async')
+    //console.log('From the copy button event listener in the Async')
     //Grab the copy buttons by class in HTML
     const copyBtns = document.querySelectorAll('.copyBtn')
-    console.log(copyBtns)
+    //console.log(copyBtns)
     for (copyBtn of copyBtns) {
       copyBtn.addEventListener('click', e => {
-        console.log(e.target)
+        console.log(e)
+        console.log(e.target.previousElementSibling.value)
+        const textToCopy = e.target.previousElementSibling.value
+        console.log(textToCopy)
+
+        navigator.clipboard.writeText(textToCopy)
       })
     }
   }
