@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', e => {
 
           // This needs to be redone to not use innerHTML if possible
           newDiv.innerHTML = `
-          <div class="card mt-5 text-center" style="width: 15rem; height: auto;">
+          <div class="card mt-5 text-center" style="width: 16rem; height: auto;">
 
           <! –– Makes the color swatch at the top of the card ––>
           <div id="comp1" class="card-body mt-2 p-5 ;" style="background-color: ${
@@ -87,7 +87,7 @@ window.addEventListener('DOMContentLoaded', e => {
           <li class="list-group-item " ><span>CMYK ${element.cmyk.value.slice(
             4
           )} <button type="submit" class="copyBtn">Copy</button></span></li>
-          <li class="list-group-item " ><span><label for="cmyk">CMYK</label><input type="text" name="cmyk" value="${element.cmyk.value.slice(
+          <li class="list-group-item " ><span style="font-size: .75rem"><label for="cmyk">CMYK</label><input style="width: 120px" type="text" name="cmyk" value="${element.cmyk.value.slice(
             4
           )}"> <button type="submit" class="copyBtn">Copy</button></span></li>
           
