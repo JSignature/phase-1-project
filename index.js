@@ -1,3 +1,9 @@
+// Event Listener 1 - DOM content loaded
+// Event Listener 2 - On change for color picker
+// Event Listener 3 - Click event on copy buttons next to colors
+
+// Use an public API - Fetch Request from Colors API
+
 window.addEventListener('DOMContentLoaded', e => {
   const selectedColor = document.querySelector('#selectedColor')
   const colorPicker = document.querySelector('#colorPicker')
@@ -46,7 +52,7 @@ window.addEventListener('DOMContentLoaded', e => {
       //console.log('Log after the await functions are started')
       //This needs to show all the buttons
       //console.log(document.querySelectorAll('.copyBtn'))
-      copyBtnEventListner()
+      copyBtnEventListener()
       //console.log('Added event listeners')
     }
 
@@ -101,28 +107,28 @@ window.addEventListener('DOMContentLoaded', e => {
           `
 
           //   this removes the outer div to make bootstrap work,
-          //   needed it to place the inner HTML
+          //   needed the div to place the inner HTML in the right spot
           div.appendChild(newDiv)
           newDiv.replaceWith(...newDiv.childNodes)
         }
-        console.log(`Accordian ${mode} has been built`)
+        //console.log(`Accordian ${mode} has been built`)
       })
 
     // Build Cards Closing Brackets
   }
 
   //Copy buttons event listener function
-  const copyBtnEventListner = () => {
+  const copyBtnEventListener = () => {
     //console.log('From the copy button event listener in the Async')
     //Grab the copy buttons by class in HTML
     const copyBtns = document.querySelectorAll('.copyBtn')
     //console.log(copyBtns)
     for (copyBtn of copyBtns) {
       copyBtn.addEventListener('click', e => {
-        console.log(e)
-        console.log(e.target.previousElementSibling.value)
+        //console.log(e)
+        //console.log(e.target.previousElementSibling.value)
         const textToCopy = e.target.previousElementSibling.value
-        console.log(textToCopy)
+        //console.log(textToCopy)
 
         navigator.clipboard.writeText(textToCopy)
       })
