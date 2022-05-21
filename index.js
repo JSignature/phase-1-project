@@ -35,25 +35,16 @@ window.addEventListener('DOMContentLoaded', e => {
     selectedColorSection.style.display = 'contents'
 
     //Grab the HTML elements to add color to accordian using ID
-
     const quadColors = document.querySelector('#quadColors')
     const analogicColors = document.querySelector('#analogicColors')
     const monochromeColors = document.querySelector('#monochromeColors')
 
     //Run the buildcard function to display each group of cards in the accordian
     async function buildAccordian() {
-      //console.log('From the Async function')
       await buildCards('quad', quadColors)
-      //console.log('Quad is built')
       await buildCards('analogic-complement', analogicColors)
-      //console.log('Analogic is built')
       await buildCards('monochrome', monochromeColors)
-      //console.log('Monochrome is built')
-      //console.log('Log after the await functions are started')
-      //This needs to show all the buttons
-      //console.log(document.querySelectorAll('.copyBtn'))
       copyBtnEventListener()
-      //console.log('Added event listeners')
     }
 
     buildAccordian()
@@ -69,11 +60,7 @@ window.addEventListener('DOMContentLoaded', e => {
     await fetch(`https://www.thecolorapi.com/scheme?hex=${color}&mode=${mode}`)
       .then(resp => resp.json())
       .then(obj => {
-        // console.log(obj)
-
         for (element of obj.colors) {
-          //   console.log(element.hex.value)
-
           const newDiv = document.createElement('div')
 
           // This needs to be redone to not use innerHTML if possible
@@ -113,23 +100,15 @@ window.addEventListener('DOMContentLoaded', e => {
         }
         //console.log(`Accordian ${mode} has been built`)
       })
-
-    // Build Cards Closing Brackets
   }
 
   //Copy buttons event listener function
   const copyBtnEventListener = () => {
-    //console.log('From the copy button event listener in the Async')
     //Grab the copy buttons by class in HTML
     const copyBtns = document.querySelectorAll('.copyBtn')
-    //console.log(copyBtns)
     for (copyBtn of copyBtns) {
       copyBtn.addEventListener('click', e => {
-        //console.log(e)
-        //console.log(e.target.previousElementSibling.value)
         const textToCopy = e.target.previousElementSibling.value
-        //console.log(textToCopy)
-
         navigator.clipboard.writeText(textToCopy)
       })
     }
